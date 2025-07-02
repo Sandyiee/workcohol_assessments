@@ -11,10 +11,10 @@ A simple full-stack **Message Board** web application built using:
 
 ##  Features
 
-- ✅ View all posted messages
-- ✅ Post a new message
-- ✅ API-based communication between Next.js and Django
-- ✅ Styled with Tailwind CSS
+-  View all posted messages
+-  Post a new message
+-  API-based communication between Next.js and Django
+-  Styled with Tailwind CSS
 
 ---
 
