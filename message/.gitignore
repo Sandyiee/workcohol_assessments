@@ -1,0 +1,9 @@
+
+Message_Board/venv/
+
+message-board-frontend/node_modules/
+
+__pycache__/
+*.pyc
+.env
+.next/
