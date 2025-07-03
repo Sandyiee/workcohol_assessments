@@ -1,21 +1,35 @@
 #  Message Board App
 
-A simple full-stack **Message Board** web application built using:
+A simple full-stack message board built using **Django**, **Next.js**, **Tailwind CSS**, **MySQL**, and **Firebase Google Authentication**.
 
--  **Django** (with Django REST Framework) for the backend API
--  **MySQL** as the database
--  **Next.js** with **Tailwind CSS** for the frontend
--  **Axios** for REST API communication between frontend and backend
+---
+
+##  Tech Stack
+
+| Layer       | Tech Used                         |
+|-------------|-----------------------------------|
+| Frontend    | Next.js (App Router), Tailwind CSS |
+| Backend     | Django REST Framework             |
+| Database    | MySQL                             |
+| Auth        | Firebase (Google Authentication)  |
+| HTTP Client | Axios                             |
 
 ---
 
 ##  Features
 
--  View all posted messages
--  Post a new message
--  API-based communication between Next.js and Django
--  Styled with Tailwind CSS
-
+- Simple message board  
+- Google Authentication via Firebase  
+- Protected route access for logged-in users only  
+- Add new messages using a form  
+- View all messages from the database  
+- Axios used for API calls  
+- Clean and responsive UI with Tailwind CSS  
+- Home, About, and Display Board routing  
+- Alert shown when unauthenticated user clicks “Go to Board”  
+- Navigation buttons (`Home`, `About`, `Board`) always visible  
+- Works with REST API powered by Django  
+- Real-time message list update after submission
 ---
 
 
