@@ -6,8 +6,9 @@ from rest_framework.decorators import api_view, permission_classes
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model, authenticate
+from django.conf import settings
+import jwt, json
 
 from .models import Manager, Client, Project, TechTeam, Feedback
 from .serializers import (
@@ -17,10 +18,8 @@ from .serializers import (
 
 from .firebase_config import *
 from firebase_admin import auth as firebase_auth
-import jwt, json
-from django.conf import settings
 
-
+#  Login using Firebase Token
 @csrf_exempt
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -28,7 +27,6 @@ def verify_firebase_token(request):
     try:
         body = json.loads(request.body)
         token = body.get('token')
-
         if not token:
             raise ValueError("Token is missing or empty")
 
@@ -49,12 +47,34 @@ def verify_firebase_token(request):
             samesite='Lax',
         )
         return response
-
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=403)
 
+#  Login with Username & Password
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def username_password_login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
 
-# CRUD
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        jwt_token = jwt.encode({'user_id': user.id}, settings.SECRET_KEY, algorithm='HS256')
+
+        response = JsonResponse({'message': 'Login successful!'})
+        response.set_cookie(
+            key='access_token',
+            value=jwt_token,
+            httponly=True,
+            secure=False,
+            samesite='Lax',
+        )
+        return response
+    else:
+        return JsonResponse({'error': 'Invalid credentials'}, status=403)
+
+#  CRUD 
 
 class ManagerList(generics.ListCreateAPIView):
     queryset = Manager.objects.all()
@@ -106,8 +126,7 @@ class FeedbackDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = FeedbackSerializer
     permission_classes = [IsAuthenticated]
 
-
-# Optional: Register user via fixed form (not Firebase)
+#  Optional Registration Endpoint (if needed)
 class FixedUserCreate(generics.CreateAPIView):
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer

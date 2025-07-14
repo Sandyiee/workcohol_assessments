@@ -6,11 +6,12 @@ from .views import (
     ProjectList, ProjectDetail,
     TechTeamList, TechTeamDetail,
     FeedbackList, FeedbackDetail,
-    verify_firebase_token
+    verify_firebase_token,username_password_login
 )
 urlpatterns = [
     path('register/', FixedUserCreate.as_view(), name='register'),
     path('verify-token/', verify_firebase_token, name='verify-firebase-token'),
+    path('username-login/', username_password_login,name='username_password_login'),
 
     path('managers/', ManagerList.as_view(), name='manager-list'),
     path('managers/<int:pk>/', ManagerDetail.as_view(), name='manager-detail'),
