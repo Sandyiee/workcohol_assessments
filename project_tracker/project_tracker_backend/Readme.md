@@ -125,7 +125,9 @@ curl -X GET http://localhost:8000/api/clients/1/
 ```bash
 curl -X PUT http://localhost:8000/api/clients/1/ \
   -H "Content-Type: application/json" \
-  -d '{"name": "Divyabharathi"}'
+  -d '{"name": "Divyabharathi",
+        "company": "Wonder Solutions",
+        "email": "divya@gmail.com"}'
 ```
 
 ### `DELETE /clients/<id>/` – Delete Clients
@@ -206,7 +208,13 @@ curl -X GET http://localhost:8000/api/projects/1/
 ```bash
 curl -X PUT http://localhost:8000/api/projects/1/ \
   -H "Content-Type: application/json" \
-  -d '{"title": "Mobiles App Redesign"}'
+  -d '{"title": "Mobiles App Redesign",
+        "description": "Redesign the UI/UX of the company app.",
+        "status": "Completed",
+        "start_date": "2025-01-10",
+        "end_date": "2025-06-20",
+        "client": 2,
+        "manager": 2}'
 ```
 
 ### `DELETE /projects/<id>/` – Delete Projects
@@ -283,7 +291,9 @@ curl -X GET http://localhost:8000/api/managers/1/
 ```bash
 curl -X PUT http://localhost:8000/api/managers/1/ \
   -H "Content-Type: application/json" \
-  -d '{  "department": "EEE"}'
+  -d '{  "name": "Alice",
+        "email": "alice@gmail.com",
+        "department": "EEE"}'
 ```
 
 ### `DELETE /managers/<id>/` – Delete Managers
@@ -361,7 +371,10 @@ curl -X GET http://localhost:8000/api/techteam/1/
 ```bash
 curl -X PUT http://localhost:8000/api/techteam/1/ \
   -H "Content-Type: application/json" \
-  -d '{ "project": 1}'
+  -d '{ "name": "Sam",
+        "roll": "Backend Developer",
+        "email": "sam@gmail.com",
+        "project": 1}'
 ```
 
 ### `DELETE /techteam/<id>/` – Delete Tech Team
@@ -439,7 +452,10 @@ curl -X GET http://localhost:8000/api/feedback/1/
 ```bash
 curl -X PUT http://localhost:8000/api/feedback/1/ \
   -H "Content-Type: application/json" \
-  -d '{ "client": 1}'
+  -d '{ "comments": "Great delivery and support team.",
+        "ratings": 5,
+        "project": 2,
+        "client": 1}'
 ```
 
 ### `DELETE /feedback/<id>/` – Delete Feedback
