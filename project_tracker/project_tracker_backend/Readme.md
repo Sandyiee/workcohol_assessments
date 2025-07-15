@@ -142,7 +142,7 @@ curl -X DELETE http://localhost:8000/api/clients/1/
 
 ---
 
-## 🔹 Projects
+##  Projects
 
 ### `GET /projects/` – List Projects
 
@@ -223,7 +223,7 @@ curl -X DELETE http://localhost:8000/api/projects/1/
 
 ---
 
-## 🔹 Managers
+##  Managers
 
 ### `GET /managers/` – List Managers
 
@@ -300,7 +300,7 @@ curl -X DELETE http://localhost:8000/api/managers/1/
 
 ---
 
-## 🔹 Tech Team
+##  Tech Team
 
 ### `GET /techteam/` – List Tech Team
 
@@ -378,7 +378,7 @@ curl -X DELETE http://localhost:8000/api/techteam/1/
 
 ---
 
-## 🔹 Feedback
+##  Feedback
 
 ### `GET /feedback/` – List Feedback
 
